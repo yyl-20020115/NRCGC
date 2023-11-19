@@ -2,8 +2,12 @@
 
 int main()
 {
-	RingBuffer<void*>* buffer = RingBuffer<void*>::Create(256,8);
+
+	auto* buffer = ReferenceRingBuffer::Create(256,8);
 	if (buffer != nullptr) {
+
+		size_t handle = buffer->Allocate(256);
+		buffer->Release(handle);
 
 		delete buffer;
 	}
