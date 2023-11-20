@@ -13,8 +13,9 @@ public:
 	}
 public:
 	~gcrc_ptr() {
-		if (this->_handle >= 0) ReferenceAllocator::Default->Release(this->_handle);
-		this->_handle = ~0;
+		if (this->_handle >= 0)
+			ReferenceAllocator::Default->Release(this->_handle);
+		this->_handle = ~0; 
 		this->_ptr = nullptr;
 	}
 public:

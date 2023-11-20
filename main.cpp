@@ -8,7 +8,6 @@ bool collecting = true;
 static void collector_function() {
 	if (buffer != nullptr) {
 		while (collecting) {
-			std::this_thread::sleep_for(std::chrono::seconds(1));
 			buffer->TryCollectOnce();
 		}
 	}

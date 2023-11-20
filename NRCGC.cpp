@@ -2,5 +2,5 @@
 
 ReferenceAllocator::Storage ReferenceAllocator::storage;
 ReferenceAllocator* ReferenceAllocator::Default
-	= ReferenceAllocator::storage.Bind(Create(DefaultAllocatingSize, DefaultIdleCount));
+	= ReferenceAllocator::storage.bind(Create(DefaultAllocatingSize, DefaultIdleCount));
 

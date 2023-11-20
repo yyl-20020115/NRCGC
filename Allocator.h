@@ -138,13 +138,10 @@ class ReferenceAllocator
 protected:
 	class Storage {
 	public:
-		Storage(ReferenceAllocator* allocator = nullptr)
-			:allocator(allocator) {
-
-		}
-		ReferenceAllocator* Bind(ReferenceAllocator* allocator) {
-			return this->allocator = allocator;
-		}
+		Storage(ReferenceAllocator* allocator = nullptr) 
+			: allocator(allocator) {}
+		ReferenceAllocator* bind(ReferenceAllocator* allocator) { return this->allocator = allocator;}
+		ReferenceAllocator* get() const { return this->allocator; }
 	public:
 		~Storage() {
 			if (this->allocator != nullptr) {
@@ -156,13 +153,10 @@ protected:
 		ReferenceAllocator* allocator;
 	};
 protected:
-
 	static Storage storage;
 public:
 	static const intptr_t DefaultAllocatingSize = 4096;
-
 	static ReferenceAllocator* Default;
-
 public:
 	static ReferenceAllocator* Create(intptr_t count, intptr_t idle_count = DefaultIdleCount) {
 		unsigned char* address = (unsigned char*)
@@ -177,7 +171,7 @@ public:
 	ReferenceAllocator(unsigned char* address, intptr_t count, intptr_t idle_count = DefaultIdleCount)
 		: RingBuffer<Reference>(address, count, idle_count) {}
 public:
-	intptr_t GetUsedCount() { return this->used; }
+	intptr_t GetUsedCount() const { return this->used; }
 public:
 	intptr_t Allocate(intptr_t size) {
 		if (this->used > this->capacity_mask) return -1LL;
