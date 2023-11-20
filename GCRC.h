@@ -45,7 +45,4 @@ protected:
 	intptr_t _handle = ~0;
 };
 
-
-
-
 #endif
