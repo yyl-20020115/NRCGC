@@ -184,8 +184,9 @@ public:
 #else
             __sync_add_and_fetch(&this->used, -1);
 #endif
+            return reference.Count;
         }
-        return handle;
+        return -1LL;
     }
 public:
     intptr_t Release(intptr_t handle) {
