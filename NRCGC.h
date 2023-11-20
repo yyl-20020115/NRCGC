@@ -171,7 +171,22 @@ public:
         }
         return -1LL;
     }
-
+public:
+    intptr_t AddRef(intptr_t handle) {
+        if (handle >= 0 && handle < this->used) {
+            Reference& reference = ((Reference*)((unsigned char*)this + this->pbuffer))[handle & this->capacity_mask];
+#ifdef _WIN32
+#ifdef _WIN64
+            _interlockedincrement64(&this->used);
+#else
+            _interlockedincrement(&this->used);
+#endif
+#else
+            __sync_add_and_fetch(&this->used, -1);
+#endif
+        }
+        return handle;
+    }
 public:
     intptr_t Release(intptr_t handle) {
         Reference& reference = ((Reference*)((unsigned char*)this + this->pbuffer))[handle & this->capacity_mask];

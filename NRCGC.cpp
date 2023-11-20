@@ -16,7 +16,6 @@ static void collector_function() {
 static void tester_function() {
 	if (buffer != nullptr) {
 		while (testing) {
-			std::this_thread::sleep_for(std::chrono::seconds(1));
 			intptr_t handle = buffer->Allocate(256);
 			if (handle != ~0) {
 				std::this_thread::sleep_for(std::chrono::seconds(1));
@@ -31,12 +30,8 @@ std::vector<std::thread*> threads;
 
 int main(int argc, char* argv[])
 {
-	buffer = ReferenceRingBuffer::Create(256,8);
+	buffer = ReferenceRingBuffer::Create(4096,8);
 	if (buffer != nullptr) {
-		//intptr_t handle = buffer->Allocate(256);
-		//if (handle != ~0) {
-		//	buffer->Release(handle);
-		//}
 		for (int i = 0; i < MaxCollectors; i++) {
 			std::thread* thread = new std::thread(collector_function);
 			threads.push_back(thread);
@@ -48,7 +43,7 @@ int main(int argc, char* argv[])
 		testing = true;
 		collecting = true;
 
-		std::this_thread::sleep_for(std::chrono::seconds(1000));
+		std::this_thread::sleep_for(std::chrono::seconds(100));
 
 		testing = false;
 		collecting = false;
