@@ -15,11 +15,17 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="NRCGC.h">
+    <ClInclude Include="Allocator.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="GCRC.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
     <ClCompile Include="NRCGC.cpp">
       <Filter>源文件</Filter>
     </ClCompile>

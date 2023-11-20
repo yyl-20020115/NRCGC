@@ -127,10 +127,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="NRCGC.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="NRCGC.h" />
+    <ClInclude Include="GCRC.h" />
+    <ClInclude Include="Allocator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
